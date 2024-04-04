@@ -1,3 +1,17 @@
+## 22.5
+
+Release date: 2024-04-16
+
+#### Bugfixes
+
+* Fixes a bug where the `Add custom fields to page analysis` setting would sometimes be wiped out after being saved.
+* Fixes a bug where the _Yoast Table of Contents_ block would throw a validation error when changing its title's heading level.
+
+#### Other
+
+* Bumps the minimum required version of Yoast SEO to 22.5.
+* Renames all Twitter references to X.
+
 ## 22.4
 
 Release date: 2024-04-03
