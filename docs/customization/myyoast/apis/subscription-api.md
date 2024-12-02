@@ -23,11 +23,10 @@ The API uses basic auth. If you are a provisioner and do not yet have the proper
 
 ## Client API
 
-To assist provisioners we have used [swagger-codegen](https://swagger.io/docs/open-source-tools/swagger-codegen/) to generate clients for the API. There's:
+To assist provisioners we have used [swagger-codegen](https://swagger.io/docs/open-source-tools/swagger-codegen/) to generate clients for the API. There are:
 
-- [PHP client](https://github.com/Yoast/subscription-api-php-client)
-    - [With additional documentation](https://github.com/Yoast/subscription-api-php-client/blob/main/docs/Api/SubscriptionProvisioningApi.md)
-- [javascript client](https://github.com/Yoast/subscription-api-javascript-client)
+- a [PHP client](https://github.com/Yoast/subscription-api-php-client) [with additional documentation](https://github.com/Yoast/subscription-api-php-client/blob/main/docs/Api/SubscriptionProvisioningApi.md).
+- a [JavaScript client](https://github.com/Yoast/subscription-api-javascript-client).
 
 The readme of these clients explains how to install and use them.
 
@@ -43,7 +42,7 @@ There are five possible statuses a subscription can have:
 - `pending-cancel`: The customer has manually cancelled their subscription. The subscription will not be renewed, and will be set to `cancelled` when the end date has passed.
 - `cancelled`: The subscription has been cancelled, and no longer provides a valid license.
 - `expired`: The subscription's end date has passed without renewing, and no longer provides a valid license.
-- `refunded` The has been refunded, and no longer provides a valid license.
+- `refunded`: The subscription has been refunded, and no longer provides a valid license.
 
 ### Creating subscriptions
 
@@ -71,12 +70,13 @@ If the end date of a subscription is in the past, the amount of extra time is ad
 
 **Cancelled or refunded subscriptions can no longer be renewed.**
 
-### Invalidate subscription licences
+### Invalidate subscription licenses
 
-There are three active ways to invalidate a subscription.
-- Cancel and let the subscription run till the end of the term. status:`pending-cancel`
-- Cancel the subscription immediately. status:`cancelled`
-- Mark the subscription as refunded. status:`refunded`
+There are three active ways to invalidate a subscription:
+
+- Cancel and let the subscription run till the end of the term. Status: `pending-cancel`.
+- Cancel the subscription immediately. Status: `cancelled`.
+- Mark the subscription as refunded. Status: `refunded`.
 
 #### Cancelling subscriptions
 
@@ -84,16 +84,17 @@ If it is known that a customer will not renew their subscription or if the custo
 
 The status of that subscription will be set to `pending-cancel`. It's still a valid license until the end date passes, then it will be set to `cancelled`.
 
-If the customer should lose access immediately. you can set `immediately` to `true` in the body. In this case, the subscription is set to `cancelled` immediately, regardless of the amount of time the subscription had remaining. The subscription is no longer considered a valid license when it has the `cancelled` status.
+If the customer should lose access immediately. You can set `immediately` to `true` in the body. In this case, the subscription is set to `cancelled` immediately, regardless of the amount of time the subscription had remaining. The subscription is no longer considered a valid license when it has the `cancelled` status.
 
 **Cancelled subscriptions can no longer be renewed.**
+
 #### Refunding subscriptions
 To indicate that the customer’s purchase is refunded the [refund endpoint](https://my.yoast.com/provisioning-api/#/Subscription%20Provisioning/post_api_provisioning_subscriptions__id__refund) should be used.
 Refunding a subscription means the license will immediately become invalid.
 
 **Refunded subscriptions cannot be renewed.**
 
-### Subscription expiration and cancellation.
+### Subscription expiration and cancellation
 
 If a subscription's end date has passed, that subscription is due for expiration.
 
